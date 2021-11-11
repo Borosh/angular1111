@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ColDef } from './components/table/table.component';
 import { Person } from './models/person';
 import { PersonService } from './services/person.service';
@@ -15,28 +16,10 @@ export class AppComponent {
     { header: 'Mass', key: 'mass' },
     { header: 'Gender', key: 'gender' },
   ];
-  persons: Person[] = [
-    {
-      name: 'Luke Skywalker',
-      height: 172,
-      mass: 77,
-      gender: 'male',
-    },
-    {
-      name: 'Luke Skywalker1',
-      height: 172,
-      mass: 77,
-      gender: 'male',
-    },
-    {
-      name: 'Luke Skywalker2',
-      height: 172,
-      mass: 77,
-      gender: 'male',
-    },
-  ];
+
+  persons$: Observable<Person[]>;
 
   constructor(private personService: PersonService) {
-    this.personService.getPersons();
+    this.persons$ = this.personService.getPersons();
   }
 }

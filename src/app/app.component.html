@@ -1,4 +1,4 @@
 <app-table
     [colDefs]="colDefs"
-    [rows]="persons"
+    [rows]="persons$ | async"
 ></app-table>
