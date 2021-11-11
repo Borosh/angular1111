@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ColDef } from './components/table/table.component';
 import { Person } from './models/person';
 
 @Component({
@@ -7,6 +8,12 @@ import { Person } from './models/person';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  colDefs: ColDef[] = [
+    { header: 'Name', key: 'name' },
+    { header: 'Height', key: 'height' },
+    { header: 'Mass', key: 'mass' },
+    { header: 'Gender', key: 'gender' },
+  ];
   persons: Person[] = [
     {
       name: 'Luke Skywalker',

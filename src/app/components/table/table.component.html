@@ -1,0 +1,14 @@
+<div class="table">
+
+    <div class="row header">
+        <div *ngFor="let colDef of colDefs">{{colDef.header}}</div>
+    </div>
+    <div
+        *ngFor="let row of rows"
+        class="row"
+    >
+        <div *ngFor="let colDef of colDefs">{{row[colDef.key]}}</div>
+
+    </div>
+
+</div>
