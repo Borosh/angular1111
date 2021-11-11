@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
   ];
 
   persons$: Observable<Person[]>;
+  totalNumberOfPages$: Observable<number>;
 
   currentPage = 1;
 
@@ -26,11 +27,14 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.personService.fetchPersons();
     this.persons$ = this.personService.getPersons();
+    this.totalNumberOfPages$ = this.personService.totalNumberOfPages$;
   }
 
   onPageChanged(page: number) {
-    if (page > this.currentPage) {
-      this.personService.getNextPage();
-    }
+    page > this.currentPage
+      ? this.personService.getNextPage()
+      : this.personService.getPreviousPage();
+
+    this.currentPage = page;
   }
 }

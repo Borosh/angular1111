@@ -2,6 +2,6 @@
     [colDefs]="colDefs"
     [rows]="persons$ | async"
     [currentPage]="currentPage"
-    [totalNumberOfPages]="5"
+    [totalNumberOfPages]="totalNumberOfPages$ | async"
     (pageChange)="onPageChanged($event)"
 ></app-paginable-table>
