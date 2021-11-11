@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ColDef } from './components/table/table.component';
 import { Person } from './models/person';
+import { PersonService } from './services/person.service';
 
 @Component({
   selector: 'app-root',
@@ -34,4 +35,8 @@ export class AppComponent {
       gender: 'male',
     },
   ];
+
+  constructor(private personService: PersonService) {
+    this.personService.getPersons();
+  }
 }
