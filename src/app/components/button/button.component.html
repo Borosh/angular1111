@@ -1,6 +1,10 @@
 <button
     class="button"
     (click)="clicked()"
+    [disabled]="disabled"
 >
-    <ng-content></ng-content>
+    <div class="content">
+        <app-loading-indicator *ngIf="loading"></app-loading-indicator>
+        <ng-content></ng-content>
+    </div>
 </button>

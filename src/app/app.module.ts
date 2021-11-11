@@ -6,9 +6,10 @@ import { AppComponent } from './app.component';
 import { ButtonComponent } from './components/button/button.component';
 import { TableComponent } from './components/table/table.component';
 import { PaginableTableComponent } from './components/paginable-table/paginable-table.component';
+import { LoadingIndicatorComponent } from './components/loading-indicator/loading-indicator.component';
 
 @NgModule({
-  declarations: [AppComponent, ButtonComponent, TableComponent, PaginableTableComponent],
+  declarations: [AppComponent, ButtonComponent, TableComponent, PaginableTableComponent, LoadingIndicatorComponent],
   imports: [BrowserModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],

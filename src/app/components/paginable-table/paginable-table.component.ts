@@ -12,9 +12,24 @@ export class PaginableTableComponent {
   @Input()
   rows: any[];
   @Input()
-  currentPage: number;
+  set currentPage(currentPage: number) {
+    this.isLastPage = currentPage === this.totalNumberOfPages;
+    this.isFirstPage = currentPage === 1;
+    this._currentPage = currentPage;
+  }
   @Input()
   totalNumberOfPages: number;
+  @Input()
+  loading: boolean;
+
+  private _currentPage: number;
+
+  get currentPage() {
+    return this._currentPage;
+  }
+
+  isLastPage: boolean;
+  isFirstPage: boolean;
 
   @Output()
   pageChange = new EventEmitter<number>();

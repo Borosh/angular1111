@@ -3,7 +3,19 @@
     [rows]="rows"
 ></app-table>
 <div class="paginator">
-    <app-button (onClick)="onPreviousPageClick()"><</app-button>
+    <app-button
+        [disabled]="loading || isFirstPage"
+        [loading]="loading"
+        (onClick)="onPreviousPageClick()"
+    >
+        <
+    </app-button>
     <div>{{ currentPage }}</div>
-    <app-button (onClick)="onNextPageClick()">></app-button>
+    <app-button
+        [disabled]="loading || isLastPage"
+        [loading]="loading"
+        (onClick)="onNextPageClick()"
+    >
+        >
+    </app-button>
 </div>

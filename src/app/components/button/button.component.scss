@@ -4,10 +4,26 @@
   border-radius: 5px;
   padding: 8px;
   border: none;
-  transition: ease-in-out .3s;
-}
+  transition: ease-in-out 0.3s;
 
-.button:hover {
-  background: black;
-  cursor: pointer;
+  &:hover:not([disabled]) {
+    background: black;
+    cursor: pointer;
+  }
+
+  &[disabled] {
+    cursor: initial;
+    background: #cbcaca;
+  }
+
+  .content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    app-loading-indicator {
+      width: 15px;
+      height: 15px;
+    }
+  }
 }
