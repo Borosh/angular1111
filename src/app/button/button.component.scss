@@ -1,0 +1,13 @@
+.button {
+  background: gray;
+  color: white;
+  border-radius: 5px;
+  padding: 8px;
+  border: none;
+  transition: ease-in-out .3s;
+}
+
+.button:hover {
+  background: black;
+  cursor: pointer;
+}
