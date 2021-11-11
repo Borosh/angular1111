@@ -1,3 +1,19 @@
-<app-button label="Button 0"></app-button>
-<app-button label="Button 1"></app-button>
-<app-button label="Button 2"></app-button>
+<div class="table">
+
+    <div class="row header">
+        <div>Name</div>
+        <div>Height</div>
+        <div>Mass</div>
+        <div>Gender</div>
+    </div>
+    <div
+        *ngFor="let person of persons"
+        class="row"
+    >
+        <div>{{person.name}}</div>
+        <div>{{person.height}}</div>
+        <div>{{person.mass}}</div>
+        <div>{{person.gender}}</div>
+    </div>
+
+</div>
