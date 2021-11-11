@@ -2,11 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import {
+  delay,
   distinctUntilKeyChanged,
   first,
   map,
   shareReplay,
   switchMap,
+  tap,
 } from 'rxjs/operators';
 import { Person } from '../models/person';
 
@@ -19,13 +21,17 @@ interface SwapiGet<T> {
 
 @Injectable({ providedIn: 'root' })
 export class PersonService {
+  private limit = 10;
   private personRequestSubject = new ReplaySubject<SwapiGet<Person>>(1);
   private totalNumberOfPagesSubject = new ReplaySubject<number>(1);
-  private limit = 10;
+  private loadingSubject = new ReplaySubject<boolean>(1);
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.loadingSubject.subscribe(console.log);
+  }
 
   fetchPersons(): void {
+    this.loadingSubject.next(true);
     this.personRequestSubject
       .pipe(
         distinctUntilKeyChanged('count'),
@@ -35,8 +41,10 @@ export class PersonService {
 
     this.http
       .get<SwapiGet<Person>>('https://swapi.dev/api/people')
+      .pipe(delay(3000))
       .subscribe((response) => {
         this.personRequestSubject.next(response);
+        this.loadingSubject.next(false);
       });
   }
 
@@ -44,8 +52,12 @@ export class PersonService {
     return this.totalNumberOfPagesSubject.asObservable();
   }
 
-  getPersons(): Observable<Person[]> {
+  get persons$(): Observable<Person[]> {
     return this.personRequestSubject.pipe(map((response) => response.results));
+  }
+
+  get loading$(): Observable<boolean> {
+    return this.loadingSubject.asObservable();
   }
 
   getNextPage() {
@@ -57,13 +69,16 @@ export class PersonService {
   }
 
   private getRequestByPreviousRequstKey(key: 'next' | 'previous') {
+    this.loadingSubject.next(true);
     this.personRequestSubject
       .pipe(
         first(),
         map((request) => request[key]),
+        delay(4000),
         switchMap((url) => this.http.get<SwapiGet<Person>>(url))
       )
       .subscribe((request) => {
+        this.loadingSubject.next(false);
         this.personRequestSubject.next(request);
       });
   }
