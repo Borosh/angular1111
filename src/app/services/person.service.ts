@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { BehaviorSubject, Observable, of, ReplaySubject, Subject } from 'rxjs';
+import { first, map, switchMap } from 'rxjs/operators';
 import { Person } from '../models/person';
 
 interface SwapiGet<T> {
@@ -13,11 +13,31 @@ interface SwapiGet<T> {
 
 @Injectable({ providedIn: 'root' })
 export class PersonService {
+  private personRequestSubject = new ReplaySubject<SwapiGet<Person>>(1);
+
   constructor(private http: HttpClient) {}
 
-  getPersons(): Observable<Person[]> {
-    return this.http
+  fetchPersons(): void {
+    this.http
       .get<SwapiGet<Person>>('https://swapi.dev/api/people')
-      .pipe(map((response) => response.results));
+      .subscribe((response) => {
+        this.personRequestSubject.next(response);
+      });
+  }
+
+  getPersons(): Observable<Person[]> {
+    return this.personRequestSubject.pipe(map((response) => response.results));
+  }
+
+  getNextPage() {
+    this.personRequestSubject
+      .pipe(
+        first(),
+        map(({ next }) => next),
+        switchMap((url) => this.http.get<SwapiGet<Person>>(url))
+      )
+      .subscribe((request) => {
+        this.personRequestSubject.next(request);
+      });
   }
 }

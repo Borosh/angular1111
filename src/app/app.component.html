@@ -1,4 +1,7 @@
-<app-table
+<app-paginable-table
     [colDefs]="colDefs"
     [rows]="persons$ | async"
-></app-table>
+    [currentPage]="currentPage"
+    [totalNumberOfPages]="5"
+    (pageChange)="onPageChanged($event)"
+></app-paginable-table>

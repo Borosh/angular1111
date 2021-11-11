@@ -1,0 +1,9 @@
+<app-table
+    [colDefs]="colDefs"
+    [rows]="rows"
+></app-table>
+<div class="paginator">
+    <app-button (onClick)="onPreviousPageClick()"><</app-button>
+    <div>{{ currentPage }}</div>
+    <app-button (onClick)="onNextPageClick()">></app-button>
+</div>
