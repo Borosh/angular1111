@@ -8,6 +8,8 @@ import { TableComponent } from './components/table/table.component';
 import { PaginableTableComponent } from './components/paginable-table/paginable-table.component';
 import { LoadingIndicatorComponent } from './components/loading-indicator/loading-indicator.component';
 import { PersonListComponent } from './containers/person-list/person-list.component';
+import { MainComponent } from './containers/main/main.component';
+import { AppRoutingModule } from './app-routing.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,8 +18,9 @@ import { PersonListComponent } from './containers/person-list/person-list.compon
     PaginableTableComponent,
     LoadingIndicatorComponent,
     PersonListComponent,
+    MainComponent,
   ],
-  imports: [BrowserModule, HttpClientModule],
+  imports: [BrowserModule, HttpClientModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
 })

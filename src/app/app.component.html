@@ -1,1 +1,8 @@
-<app-person-list></app-person-list>
+<div class="nav-bar">
+    <app-button (onClick)="navigateTo('main')">Main</app-button>
+    <app-button (onClick)="navigateTo('persons')">Persons</app-button>
+</div>
+
+<div class="content">
+    <router-outlet></router-outlet>
+</div>
