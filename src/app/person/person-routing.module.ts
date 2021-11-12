@@ -7,6 +7,18 @@ const routes: Routes = [
   {
     path: 'persons/:id',
     component: PersonListComponent,
+    children: [
+      {
+        path: 'skywalker',
+        canActivate: [],
+      },
+    ],
+    canActivate: [PersonGuard],
+    canActivateChild: [PersonGuard],
+  },
+  {
+    path: 'persons/:id',
+    component: PersonListComponent,
     canActivate: [PersonGuard],
   },
 ];
