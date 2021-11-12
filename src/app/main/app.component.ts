@@ -7,9 +7,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  isSidenavOpened: boolean;
+
   constructor(private router: Router) {}
 
   navigateTo(path: string) {
     this.router.navigateByUrl(path);
+  }
+
+  onMenuClick() {
+    this.isSidenavOpened = !this.isSidenavOpened;
   }
 }

@@ -1,11 +1,14 @@
 .nav-bar {
   display: flex;
   gap: 8px;
-  border-bottom: 2px solid black;
-  padding-bottom: 8px;
-  margin: 8px 0 16px;
+  margin: 8px 8px;
+  flex-direction: column;
 }
 
 .content {
   margin: 0 16px;
+}
+
+mat-sidenav-content {
+  height: 100vh;
 }
