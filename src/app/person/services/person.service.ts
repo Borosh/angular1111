@@ -2,14 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import { distinctUntilKeyChanged, first, map, switchMap } from 'rxjs/operators';
+import { SwapiGet } from 'src/app/shared/models/swapi';
 import { Person } from '../models/person';
-
-interface SwapiGet<T> {
-  count: number;
-  next: string;
-  previous: string;
-  results: T[];
-}
 
 @Injectable({ providedIn: 'root' })
 export class PersonService {

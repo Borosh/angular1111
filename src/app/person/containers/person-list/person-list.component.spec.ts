@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
+import { PersonService } from '../../services/person.service';
 
 import { PersonListComponent } from './person-list.component';
 
@@ -8,9 +10,20 @@ describe('PersonListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PersonListComponent ]
-    })
-    .compileComponents();
+      declarations: [PersonListComponent],
+      providers: [
+        {
+          provide: PersonService,
+          useValue: {
+            persons$: of([]),
+            totalNumberOfPersons$: of(0),
+            loading$: of(false),
+            getNextPage: () => {},
+            getPreviousPage: () => {},
+          },
+        },
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {
