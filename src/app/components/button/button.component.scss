@@ -1,3 +1,5 @@
+@import "~src/styles/variables";
+
 .button {
   background: gray;
   color: white;
@@ -13,7 +15,7 @@
 
   &[disabled] {
     cursor: initial;
-    background: #cbcaca;
+    background: $DISABLED_BUTTON_COLOR;
   }
 
   .content {
@@ -26,4 +28,8 @@
       height: 15px;
     }
   }
+}
+
+.my-class {
+  border: 2px solid blue;
 }
