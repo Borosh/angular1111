@@ -12,7 +12,18 @@ export interface ColDef {
 })
 export class TableComponent {
   @Input()
-  colDefs: ColDef[];
+  set colDefs(colDefs: ColDef[]) {
+    this.displayedColumns = colDefs.map(({ key }) => key);
+    this._colDefs = colDefs;
+  }
+
   @Input()
   rows: any[];
+
+  private _colDefs: ColDef[];
+
+  get colDefs() {
+    return this._colDefs;
+  }
+  displayedColumns: string[];
 }

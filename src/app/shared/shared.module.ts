@@ -5,20 +5,20 @@ import { LoadingIndicatorComponent } from './components/loading-indicator/loadin
 import { PaginableTableComponent } from './components/paginable-table/paginable-table.component';
 import { TableComponent } from './components/table/table.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+
+const COMPONENTS = [
+  PaginableTableComponent,
+  TableComponent,
+  ButtonComponent,
+  LoadingIndicatorComponent,
+];
+
+const IMPORTED_MATERIAL_MOUDLES = [MatButtonModule, MatTableModule];
 
 @NgModule({
-  imports: [CommonModule, MatButtonModule],
-  declarations: [
-    PaginableTableComponent,
-    TableComponent,
-    ButtonComponent,
-    LoadingIndicatorComponent,
-  ],
-  exports: [
-    PaginableTableComponent,
-    TableComponent,
-    ButtonComponent,
-    LoadingIndicatorComponent,
-  ],
+  imports: [IMPORTED_MATERIAL_MOUDLES, CommonModule],
+  declarations: [COMPONENTS],
+  exports: [COMPONENTS],
 })
 export class SharedModule {}

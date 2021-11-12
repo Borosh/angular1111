@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import {
-  delay,
   distinctUntilKeyChanged,
   first,
   map,
@@ -38,7 +37,7 @@ export class PersonService {
 
     this.http
       .get<SwapiGet<Person>>('/api/people')
-      .pipe(delay(3000))
+      // .pipe(delay(3000))
       .subscribe((response) => {
         this.personRequestSubject.next(response);
         this.loadingSubject.next(false);
@@ -71,7 +70,7 @@ export class PersonService {
       .pipe(
         first(),
         map((request) => request[key]),
-        delay(4000),
+        //   delay(4000),
         switchMap((url) => this.http.get<SwapiGet<Person>>(url))
       )
       .subscribe((request) => {
