@@ -8,7 +8,6 @@ import {
   map,
   shareReplay,
   switchMap,
-  tap,
 } from 'rxjs/operators';
 import { Person } from '../models/person';
 
@@ -40,7 +39,7 @@ export class PersonService {
       .subscribe(this.totalNumberOfPagesSubject);
 
     this.http
-      .get<SwapiGet<Person>>('https://swapi.dev/api/people')
+      .get<SwapiGet<Person>>('/api/people')
       .pipe(delay(3000))
       .subscribe((response) => {
         this.personRequestSubject.next(response);
