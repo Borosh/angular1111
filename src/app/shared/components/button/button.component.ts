@@ -8,8 +8,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class ButtonComponent {
   @Input()
   disabled: boolean;
-  @Input()
-  loading: boolean;
   @Output()
   onClick = new EventEmitter<void>();
 

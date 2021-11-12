@@ -4,9 +4,10 @@ import { ButtonComponent } from './components/button/button.component';
 import { LoadingIndicatorComponent } from './components/loading-indicator/loading-indicator.component';
 import { PaginableTableComponent } from './components/paginable-table/paginable-table.component';
 import { TableComponent } from './components/table/table.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [CommonModule, MatButtonModule],
   declarations: [
     PaginableTableComponent,
     TableComponent,

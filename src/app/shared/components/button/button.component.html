@@ -1,10 +1,7 @@
 <button
-    class="button"
-    (click)="clicked()"
+    mat-raised-button
     [disabled]="disabled"
+    (click)="clicked()"
 >
-    <div class="content">
-        <app-loading-indicator *ngIf="loading"></app-loading-indicator>
-        <ng-content></ng-content>
-    </div>
+    <ng-content></ng-content>
 </button>

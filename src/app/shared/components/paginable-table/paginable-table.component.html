@@ -5,7 +5,6 @@
 <div class="paginator">
     <app-button
         [disabled]="loading || isFirstPage"
-        [loading]="loading"
         (onClick)="onPreviousPageClick()"
     >
         <
@@ -13,7 +12,6 @@
     <div>{{ currentPage }}</div>
     <app-button
         [disabled]="loading || isLastPage"
-        [loading]="loading"
         (onClick)="onNextPageClick()"
     >
         >
