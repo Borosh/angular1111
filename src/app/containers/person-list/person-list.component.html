@@ -1,0 +1,13 @@
+<app-paginable-table
+    *ngIf="firstLoaded; else loading"
+    [colDefs]="colDefs"
+    [rows]="persons$ | async"
+    [currentPage]="currentPage"
+    [totalNumberOfPages]="totalNumberOfPages$ | async"
+    [loading]="loading$ | async"
+    (pageChange)="onPageChanged($event)"
+></app-paginable-table>
+
+<ng-template #loading>
+    <app-loading-indicator></app-loading-indicator>
+</ng-template>
