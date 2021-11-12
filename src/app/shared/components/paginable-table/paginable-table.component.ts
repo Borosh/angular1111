@@ -1,5 +1,6 @@
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Input,
@@ -13,6 +14,7 @@ import { ColDef } from '../table/table.component';
   selector: 'app-paginable-table',
   templateUrl: './paginable-table.component.html',
   styleUrls: ['./paginable-table.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PaginableTableComponent implements AfterViewInit {
   @Input()
