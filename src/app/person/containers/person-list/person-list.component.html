@@ -3,7 +3,7 @@
     [colDefs]="colDefs"
     [rows]="persons$ | async"
     [currentPage]="currentPage"
-    [totalNumberOfPages]="totalNumberOfPages$ | async"
+    [totalNumberOfElements]="totalNumberOfPersons$ | async"
     [loading]="loading$ | async"
     (pageChange)="onPageChanged($event)"
 ></app-paginable-table>

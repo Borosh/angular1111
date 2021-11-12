@@ -19,7 +19,7 @@ export class PersonListComponent implements OnInit {
   ];
 
   persons$: Observable<Person[]>;
-  totalNumberOfPages$: Observable<number>;
+  totalNumberOfPersons$: Observable<number>;
   loading$: Observable<boolean>;
 
   firstLoaded = false;
@@ -29,7 +29,7 @@ export class PersonListComponent implements OnInit {
 
   ngOnInit() {
     this.persons$ = this.personService.persons$;
-    this.totalNumberOfPages$ = this.personService.totalNumberOfPages$;
+    this.totalNumberOfPersons$ = this.personService.totalNumberOfPersons$;
     this.loading$ = this.personService.loading$;
 
     this.personService.loading$

@@ -6,6 +6,7 @@ import { PaginableTableComponent } from './components/paginable-table/paginable-
 import { TableComponent } from './components/table/table.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 const COMPONENTS = [
   PaginableTableComponent,
@@ -14,7 +15,11 @@ const COMPONENTS = [
   LoadingIndicatorComponent,
 ];
 
-const IMPORTED_MATERIAL_MOUDLES = [MatButtonModule, MatTableModule];
+const IMPORTED_MATERIAL_MOUDLES = [
+  MatButtonModule,
+  MatTableModule,
+  MatPaginatorModule,
+];
 
 @NgModule({
   imports: [IMPORTED_MATERIAL_MOUDLES, CommonModule],

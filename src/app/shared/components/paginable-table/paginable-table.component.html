@@ -2,18 +2,10 @@
     [colDefs]="colDefs"
     [rows]="rows"
 ></app-table>
-<div class="paginator">
-    <app-button
-        [disabled]="loading || isFirstPage"
-        (onClick)="onPreviousPageClick()"
-    >
-        <
-    </app-button>
-    <div>{{ currentPage }}</div>
-    <app-button
-        [disabled]="loading || isLastPage"
-        (onClick)="onNextPageClick()"
-    >
-        >
-    </app-button>
-</div>
+
+<mat-paginator
+    [length]="totalNumberOfElements"
+    [pageSize]="10"
+    (page)="onPageChange($event)"
+>
+</mat-paginator>

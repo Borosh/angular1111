@@ -1,13 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
-import {
-  distinctUntilKeyChanged,
-  first,
-  map,
-  shareReplay,
-  switchMap,
-} from 'rxjs/operators';
+import { distinctUntilKeyChanged, first, map, switchMap } from 'rxjs/operators';
 import { Person } from '../models/person';
 
 interface SwapiGet<T> {
@@ -19,9 +13,8 @@ interface SwapiGet<T> {
 
 @Injectable({ providedIn: 'root' })
 export class PersonService {
-  private limit = 10;
   private personRequestSubject = new ReplaySubject<SwapiGet<Person>>(1);
-  private totalNumberOfPagesSubject = new ReplaySubject<number>(1);
+  private totalNumberOfPersons = new ReplaySubject<number>(1);
   private loadingSubject = new ReplaySubject<boolean>(1);
 
   constructor(private http: HttpClient) {}
@@ -31,9 +24,9 @@ export class PersonService {
     this.personRequestSubject
       .pipe(
         distinctUntilKeyChanged('count'),
-        map((request) => Math.ceil(request.count / this.limit), shareReplay(1))
+        map(({ count }) => count)
       )
-      .subscribe(this.totalNumberOfPagesSubject);
+      .subscribe(this.totalNumberOfPersons);
 
     this.http
       .get<SwapiGet<Person>>('/api/people')
@@ -44,8 +37,8 @@ export class PersonService {
       });
   }
 
-  get totalNumberOfPages$(): Observable<number> {
-    return this.totalNumberOfPagesSubject.asObservable();
+  get totalNumberOfPersons$(): Observable<number> {
+    return this.totalNumberOfPersons.asObservable();
   }
 
   get persons$(): Observable<Person[]> {
