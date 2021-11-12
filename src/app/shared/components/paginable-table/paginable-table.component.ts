@@ -1,5 +1,12 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { PageEvent } from '@angular/material/paginator';
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { ColDef } from '../table/table.component';
 
 @Component({
@@ -7,33 +14,27 @@ import { ColDef } from '../table/table.component';
   templateUrl: './paginable-table.component.html',
   styleUrls: ['./paginable-table.component.scss'],
 })
-export class PaginableTableComponent {
+export class PaginableTableComponent implements AfterViewInit {
   @Input()
   colDefs: ColDef[];
   @Input()
   rows: any[];
   @Input()
-  set currentPage(currentPage: number) {
-    this.isLastPage = currentPage === this.totalNumberOfElements;
-    this.isFirstPage = currentPage === 1;
-    this._currentPage = currentPage;
-  }
+  currentPage: number;
   @Input()
   totalNumberOfElements: number;
   @Input()
   loading: boolean;
 
-  private _currentPage: number;
-
-  get currentPage() {
-    return this._currentPage;
-  }
-
-  isLastPage: boolean;
-  isFirstPage: boolean;
+  @ViewChild('paginator')
+  paginator: MatPaginator;
 
   @Output()
   pageChange = new EventEmitter<number>();
+
+  ngAfterViewInit() {
+    console.log(this.paginator);
+  }
 
   onPageChange({ pageIndex, previousPageIndex }: PageEvent) {
     pageIndex > previousPageIndex

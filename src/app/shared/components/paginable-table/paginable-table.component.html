@@ -4,6 +4,7 @@
 ></app-table>
 
 <mat-paginator
+    #paginator
     [length]="totalNumberOfElements"
     [pageSize]="10"
     (page)="onPageChange($event)"
