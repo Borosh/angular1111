@@ -7,7 +7,9 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { DialogComponent } from '../dialog/dialog.component';
 import { ColDef } from '../table/table.component';
 
 @Component({
@@ -34,6 +36,8 @@ export class PaginableTableComponent implements AfterViewInit {
   @Output()
   pageChange = new EventEmitter<number>();
 
+  constructor(public dialog: MatDialog) {}
+
   ngAfterViewInit() {
     console.log(this.paginator);
   }
@@ -54,5 +58,17 @@ export class PaginableTableComponent implements AfterViewInit {
     if (this.currentPage < this.totalNumberOfElements) {
       this.pageChange.emit(this.currentPage + 1);
     }
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '250px',
+      data: {},
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+      console.log(result);
+    });
   }
 }
