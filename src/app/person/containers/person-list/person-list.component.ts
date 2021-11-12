@@ -28,7 +28,6 @@ export class PersonListComponent implements OnInit {
   constructor(private personService: PersonService) {}
 
   ngOnInit() {
-    this.personService.fetchPersons();
     this.persons$ = this.personService.persons$;
     this.totalNumberOfPages$ = this.personService.totalNumberOfPages$;
     this.loading$ = this.personService.loading$;
