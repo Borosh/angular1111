@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { ColDef } from 'src/app/components/table/table.component';
-import { Person } from 'src/app/models/person';
-import { PersonService } from 'src/app/services/person.service';
+import { ColDef } from 'src/app/shared/components/table/table.component';
+import { Person } from 'src/app/person/models/person';
+import { PersonService } from 'src/app/person/services/person.service';
 
 @Component({
   selector: 'app-person-list',

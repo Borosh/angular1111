@@ -25,9 +25,7 @@ export class PersonService {
   private totalNumberOfPagesSubject = new ReplaySubject<number>(1);
   private loadingSubject = new ReplaySubject<boolean>(1);
 
-  constructor(private http: HttpClient) {
-    this.loadingSubject.subscribe(console.log);
-  }
+  constructor(private http: HttpClient) {}
 
   fetchPersons(): void {
     this.loadingSubject.next(true);
