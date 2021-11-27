@@ -9,15 +9,15 @@
     >
         Add person
     </app-button>
-    <app-paginable-table
-        [colDefs]="tableColumns"
-        [rows]="persons$ | async"
-        [currentPage]="currentPage"
-        [totalNumberOfElements]="totalNumberOfPersons$ | async"
-        [loading]="loading$ | async"
-        (pageChange)="onPageChanged($event)"
-    ></app-paginable-table>
 
+    <app-person-table
+        [persons]="persons$ | async"
+        [currentPage]="currentPage"
+        [totalNumberOfPersons]="totalNumberOfPersons$ | async"
+        [loading]="loading$ | async"
+        (nextPageClicked)="nextPage()"
+        (previousPageClicked)="previousPage()"
+    ></app-person-table>
 </div>
 
 <ng-template #loading>

@@ -7,18 +7,13 @@ import { PersonService } from 'src/app/person/services/person.service';
 import { MatDialog } from '@angular/material/dialog';
 import { FormDialogComponent } from 'src/app/shared/components/dialog/form-dialog.component';
 import { AddPersonFormComponent } from '../../components/add-person-form/add-person-form.component';
-import { tableColumns } from 'src/app/shared/decorators/table-columns.decorator';
-import { WindowEventListener, Log } from 'src/app/shared/decorators';
 
-@tableColumns('name', 'height', 'mass', 'gender')
 @Component({
   selector: 'app-person-list',
   templateUrl: './person-list.component.html',
   styleUrls: ['./person-list.component.scss'],
 })
 export class PersonListComponent implements OnInit {
-  tableColumns: ColDef[];
-
   persons$: Observable<Person[]>;
   totalNumberOfPersons$: Observable<number>;
   loading$: Observable<boolean>;
@@ -38,21 +33,14 @@ export class PersonListComponent implements OnInit {
       .subscribe((_) => (this.firstLoaded = true));
   }
 
-  onPageChanged(page: number) {
-    page > this.currentPage
-      ? this.personService.getNextPage()
-      : this.personService.getPreviousPage();
-
-    this.currentPage = page;
-
-    return page;
+  nextPage() {
+    this.personService.getNextPage();
+    this.currentPage++;
   }
 
-  @WindowEventListener('resize')
-  @Log()
-  doSomething() {
-    console.log('this is something');
-    console.log({ this: this });
+  previousPage() {
+    this.personService.getPreviousPage();
+    this.currentPage--;
   }
 
   openDialog() {
