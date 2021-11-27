@@ -7,19 +7,16 @@ import { PersonService } from 'src/app/person/services/person.service';
 import { MatDialog } from '@angular/material/dialog';
 import { FormDialogComponent } from 'src/app/shared/components/dialog/form-dialog.component';
 import { AddPersonFormComponent } from '../../components/add-person-form/add-person-form.component';
+import { tableColumns } from 'src/app/shared/decorators/table-columns.decorator';
 
+@tableColumns('name', 'height', 'mass', 'gender')
 @Component({
   selector: 'app-person-list',
   templateUrl: './person-list.component.html',
   styleUrls: ['./person-list.component.scss'],
 })
 export class PersonListComponent implements OnInit {
-  colDefs: ColDef[] = [
-    { header: 'Name', key: 'name' },
-    { header: 'Height', key: 'height' },
-    { header: 'Mass', key: 'mass' },
-    { header: 'Gender', key: 'gender' },
-  ];
+  tableColumns: ColDef[];
 
   persons$: Observable<Person[]>;
   totalNumberOfPersons$: Observable<number>;

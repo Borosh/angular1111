@@ -10,7 +10,7 @@
         Add person
     </app-button>
     <app-paginable-table
-        [colDefs]="colDefs"
+        [colDefs]="tableColumns"
         [rows]="persons$ | async"
         [currentPage]="currentPage"
         [totalNumberOfElements]="totalNumberOfPersons$ | async"

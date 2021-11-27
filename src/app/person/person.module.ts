@@ -12,6 +12,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PersonTableComponent } from './components/person-table/person-table.component';
 
 const IMPORTED_MATERIAL_MOUDLES = [
   MatButtonModule,
@@ -24,7 +25,7 @@ const IMPORTED_MATERIAL_MOUDLES = [
 ];
 
 @NgModule({
-  declarations: [PersonListComponent, AddPersonFormComponent],
+  declarations: [PersonListComponent, AddPersonFormComponent, PersonTableComponent],
   imports: [
     CommonModule,
     SharedModule,
