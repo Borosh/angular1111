@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
+import { FormComponentForFormDialogBaseClass } from 'src/app/shared/components/dialog/form-component-for-form-dialog-base';
 
 interface SelectOption {
   value: string;
@@ -11,15 +12,18 @@ interface SelectOption {
   templateUrl: './add-person-form.component.html',
   styleUrls: ['./add-person-form.component.scss'],
 })
-export class AddPersonFormComponent implements OnInit {
-  private static _form: FormGroup;
-
+export class AddPersonFormComponent
+  extends FormComponentForFormDialogBaseClass
+  implements OnInit
+{
   genders: SelectOption[];
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) {
+    super();
+  }
 
   ngOnInit(): void {
-    AddPersonFormComponent._form = this.fb.group({
+    this.form = this.fb.group({
       name: this.fb.control('', Validators.required),
       height: this.fb.control('', Validators.required),
       mass: this.fb.control('', Validators.required),
@@ -31,13 +35,5 @@ export class AddPersonFormComponent implements OnInit {
       { value: 'female', viewValue: 'Female' },
       { value: 'n/a', viewValue: 'n/a' },
     ];
-  }
-
-  get form() {
-    return AddPersonFormComponent._form;
-  }
-
-  public static getFormValue() {
-    return AddPersonFormComponent._form.value;
   }
 }

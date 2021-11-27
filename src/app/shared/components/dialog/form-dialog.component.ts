@@ -1,35 +1,53 @@
-import { Component, Inject } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ComponentFactoryResolver,
+  Inject,
+  Type,
+  ViewChild,
+  ViewContainerRef,
+} from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ComponentPortal } from '@angular/cdk/portal';
 import { FormComponentForFormDialog } from './form-component-for-form-dialog-base';
 
 @Component({
   selector: 'app-dialog',
   templateUrl: './form-dialog.component.html',
   styleUrls: ['./form-dialog.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FormDialogComponent {
-  portal: ComponentPortal<FormComponentForFormDialog>;
+export class FormDialogComponent implements AfterViewInit {
+  @ViewChild('fromContainer', { read: ViewContainerRef })
+  fromContainer: ViewContainerRef;
+
+  componentClass: Type<FormComponentForFormDialog>;
   component: FormComponentForFormDialog;
 
   constructor(
     public dialogRef: MatDialogRef<FormDialogComponent>,
     @Inject(MAT_DIALOG_DATA)
-    public data: { component: FormComponentForFormDialog } & any
+    public data: any,
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private cdr: ChangeDetectorRef
   ) {}
 
-  ngOnInit() {
-    this.component = this.data.component;
-    this.portal = new ComponentPortal(this.component);
+  ngAfterViewInit() {
+    this.componentClass = this.data.component;
+    const factory = this.componentFactoryResolver.resolveComponentFactory(
+      this.componentClass
+    );
+    const componentRef = this.fromContainer.createComponent(factory);
+    this.cdr.detectChanges();
+    this.component = componentRef.instance;
   }
-
-  ngAfterViewInit() {}
 
   cancelClicked(): void {
-    this.dialogRef.close(false);
+    this.dialogRef.close(null);
   }
 
-  saveClicked() {
+  saveClicked(): void {
     this.dialogRef.close(this.component.getFormValue());
   }
 }
