@@ -5,7 +5,8 @@ import { ColDef } from 'src/app/shared/components/table/table.component';
 import { Person } from 'src/app/person/models/person';
 import { PersonService } from 'src/app/person/services/person.service';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogComponent } from 'src/app/shared/components/dialog/dialog.component';
+import { FormDialogComponent } from 'src/app/shared/components/dialog/form-dialog.component';
+import { AddPersonFormComponent } from '../../components/add-person-form/add-person-form.component';
 
 @Component({
   selector: 'app-person-list',
@@ -48,14 +49,18 @@ export class PersonListComponent implements OnInit {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(DialogComponent, {
+    const dialogRef = this.dialog.open(FormDialogComponent, {
       width: '450px',
-      data: {},
+      data: {
+        component: AddPersonFormComponent,
+      },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed');
       console.log(result);
+      if (result) {
+      }
     });
   }
 }

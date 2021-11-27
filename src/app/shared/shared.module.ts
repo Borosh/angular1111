@@ -7,19 +7,20 @@ import { TableComponent } from './components/table/table.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { DialogComponent } from './components/dialog/dialog.component';
+import { FormDialogComponent } from './components/dialog/form-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
+import { PortalModule } from '@angular/cdk/portal';
 
 const COMPONENTS = [
   PaginableTableComponent,
   TableComponent,
   ButtonComponent,
   LoadingIndicatorComponent,
-  DialogComponent,
+  FormDialogComponent,
 ];
 
 const IMPORTED_MATERIAL_MOUDLES = [
@@ -30,6 +31,7 @@ const IMPORTED_MATERIAL_MOUDLES = [
   MatFormFieldModule,
   MatInputModule,
   MatSelectModule,
+  PortalModule,
 ];
 
 @NgModule({

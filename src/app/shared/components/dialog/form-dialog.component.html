@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>New person</h1>
+<div mat-dialog-content>
+    <ng-template
+        [cdkPortalOutlet]="portal"
+        #test
+    ></ng-template>
+</div>
+<div mat-dialog-actions>
+    <button
+        mat-button
+        (click)="cancelClicked()"
+    >
+        Cancel
+    </button>
+    <button
+        mat-button
+        cdkFocusInitial
+        (click)="saveClicked()"
+    >
+        Save
+    </button>
+</div>
