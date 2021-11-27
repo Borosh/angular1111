@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { ColDef } from 'src/app/shared/components/table/table.component';
@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { FormDialogComponent } from 'src/app/shared/components/dialog/form-dialog.component';
 import { AddPersonFormComponent } from '../../components/add-person-form/add-person-form.component';
 import { tableColumns } from 'src/app/shared/decorators/table-columns.decorator';
+import { WindowEventListener, Log } from 'src/app/shared/decorators';
 
 @tableColumns('name', 'height', 'mass', 'gender')
 @Component({
@@ -43,6 +44,15 @@ export class PersonListComponent implements OnInit {
       : this.personService.getPreviousPage();
 
     this.currentPage = page;
+
+    return page;
+  }
+
+  @WindowEventListener('resize')
+  @Log()
+  doSomething() {
+    console.log('this is something');
+    console.log({ this: this });
   }
 
   openDialog() {
