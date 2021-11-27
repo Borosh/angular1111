@@ -1,11 +1,10 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { ColDef } from 'src/app/shared/components/table/table.component';
 import { Person } from 'src/app/person/models/person';
 import { PersonService } from 'src/app/person/services/person.service';
 import { MatDialog } from '@angular/material/dialog';
-import { FormDialogComponent } from 'src/app/shared/components/dialog/form-dialog.component';
+import { FormDialogComponent } from '@shared/components/dialog/form-dialog.component';
 import { AddPersonFormComponent } from '../../components/add-person-form/add-person-form.component';
 
 @Component({

@@ -1,5 +1,5 @@
 import { Person } from '../person/models/person';
-import { SwapiGet } from '../shared/models/swapi';
+import { SwapiGet } from '@shared/models/swapi';
 
 export const mockPerson: Person = {
   name: 'testName',

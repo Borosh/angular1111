@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { FormComponentForFormDialogBaseClass } from 'src/app/shared/components/dialog/form-component-for-form-dialog-base';
+import { FormComponentForFormDialogBaseClass } from '@shared/components/dialog/form-component-for-form-dialog-base';
 
 interface SelectOption {
   value: string;

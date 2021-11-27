@@ -5,8 +5,8 @@ import {
   Input,
   Output,
 } from '@angular/core';
-import { ColDef } from 'src/app/shared/components/table/table.component';
-import { tableColumns } from 'src/app/shared/decorators/table-columns.decorator';
+import { ColDef } from '@shared/components/table/table.component';
+import { tableColumns } from '@shared/decorators/table-columns.decorator';
 import { Person } from '../../models/person';
 
 @tableColumns('name', 'height', 'mass', 'gender')
