@@ -1,12 +1,24 @@
-<app-paginable-table
+<div
     *ngIf="firstLoaded; else loading"
-    [colDefs]="colDefs"
-    [rows]="persons$ | async"
-    [currentPage]="currentPage"
-    [totalNumberOfElements]="totalNumberOfPersons$ | async"
-    [loading]="loading$ | async"
-    (pageChange)="onPageChanged($event)"
-></app-paginable-table>
+    class="person-list-wrapper"
+>
+
+    <app-button
+        class="add-person-button"
+        (onClick)="openDialog()"
+    >
+        Add person
+    </app-button>
+    <app-paginable-table
+        [colDefs]="colDefs"
+        [rows]="persons$ | async"
+        [currentPage]="currentPage"
+        [totalNumberOfElements]="totalNumberOfPersons$ | async"
+        [loading]="loading$ | async"
+        (pageChange)="onPageChanged($event)"
+    ></app-paginable-table>
+
+</div>
 
 <ng-template #loading>
     <app-loading-indicator></app-loading-indicator>

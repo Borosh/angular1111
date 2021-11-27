@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { distinctUntilChanged, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dialog',
@@ -11,6 +10,12 @@ import { distinctUntilChanged, map } from 'rxjs/operators';
 export class DialogComponent implements OnInit {
   form: FormGroup;
 
+  genders = [
+    { value: 'male', viewValue: 'Male' },
+    { value: 'female', viewValue: 'Female' },
+    { value: 'n/a', viewValue: 'n/a' },
+  ];
+
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
@@ -18,16 +23,10 @@ export class DialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      animal: new FormControl('test', Validators.required),
-      animal2: new FormControl('test2'),
-      animals: new FormArray([
-        new FormGroup({
-          value: new FormControl(),
-        }),
-        new FormGroup({
-          value: new FormControl(),
-        }),
-      ]),
+      name: new FormControl('', Validators.required),
+      height: new FormControl('', Validators.required),
+      mass: new FormControl('', Validators.required),
+      gender: new FormControl('', Validators.required),
     });
 
     this.form.valueChanges.subscribe(console.log);
@@ -37,12 +36,11 @@ export class DialogComponent implements OnInit {
     return (this.form.get('animals') as FormArray).controls as FormGroup[];
   }
 
-  onNoClick(): void {
+  cancelClicked(): void {
     this.dialogRef.close();
   }
 
-  onOkClick() {
-    console.log(this.data);
-    // this.dialogRef.close('hello');
+  saveClicked() {
+    this.dialogRef.close(this.form.value);
   }
 }

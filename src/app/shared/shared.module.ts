@@ -12,6 +12,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
 
 const COMPONENTS = [
   PaginableTableComponent,
@@ -28,6 +29,7 @@ const IMPORTED_MATERIAL_MOUDLES = [
   MatDialogModule,
   MatFormFieldModule,
   MatInputModule,
+  MatSelectModule,
 ];
 
 @NgModule({

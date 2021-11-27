@@ -1,45 +1,55 @@
-<h1 mat-dialog-title>Hello</h1>
+<h1 mat-dialog-title>New person</h1>
 <div mat-dialog-content>
     <form [formGroup]="form">
-        <p>What's your favorite animal?</p>
+        <p>Person data</p>
         <mat-form-field appearance="fill">
-            <mat-label>Favorite Animal</mat-label>
+            <mat-label>Name</mat-label>
             <input
                 matInput
-                formControlName="animal"
+                formControlName="name"
             >
         </mat-form-field>
         <mat-form-field appearance="fill">
+            <mat-label>Height</mat-label>
             <input
+                type="number"
                 matInput
-                formControlName="animal2"
+                formControlName="height"
             >
         </mat-form-field>
-        <mat-form-field
-            appearance="fill"
-            *ngFor="let group of animalsGroups"
-        >
-            <ng-container [formGroup]="group">
-                <input
-                    matInput
-                    formControlName="value"
+        <mat-form-field appearance="fill">
+            <mat-label>Mass</mat-label>
+            <input
+                type="number"
+                matInput
+                formControlName="mass"
+            >
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Gender</mat-label>
+            <mat-select formControlName="gender">
+                <mat-option
+                    *ngFor="let gender of genders"
+                    [value]="gender.value"
                 >
-            </ng-container>
+                    {{gender.viewValue}}
+                </mat-option>
+            </mat-select>
         </mat-form-field>
     </form>
 </div>
 <div mat-dialog-actions>
     <button
         mat-button
-        (click)="onNoClick()"
+        (click)="cancelClicked()"
     >
-        No Thanks
+        Cancel
     </button>
     <button
         mat-button
         cdkFocusInitial
-        (click)="onOkClick()"
+        (click)="saveClicked()"
     >
-        Ok
+        Save
     </button>
 </div>

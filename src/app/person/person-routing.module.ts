@@ -5,19 +5,7 @@ import { PersonGuard } from './guards/person.guard';
 
 const routes: Routes = [
   {
-    path: 'persons/:id',
-    component: PersonListComponent,
-    children: [
-      {
-        path: 'skywalker',
-        canActivate: [],
-      },
-    ],
-    canActivate: [PersonGuard],
-    canActivateChild: [PersonGuard],
-  },
-  {
-    path: 'persons/:id',
+    path: '',
     component: PersonListComponent,
     canActivate: [PersonGuard],
   },
