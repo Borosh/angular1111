@@ -13,6 +13,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PersonTableComponent } from './components/person-table/person-table.component';
+import { PersonDetailsComponent } from './containers/person-details/person-details.component';
 
 const IMPORTED_MATERIAL_MOUDLES = [
   MatButtonModule,
@@ -25,7 +26,7 @@ const IMPORTED_MATERIAL_MOUDLES = [
 ];
 
 @NgModule({
-  declarations: [PersonListComponent, AddPersonFormComponent, PersonTableComponent],
+  declarations: [PersonListComponent, AddPersonFormComponent, PersonTableComponent, PersonDetailsComponent],
   imports: [
     CommonModule,
     SharedModule,
