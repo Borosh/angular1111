@@ -23,7 +23,7 @@ export class PersonService {
       .subscribe(this.totalNumberOfPersons);
 
     this.http
-      .get<SwapiGet<Person>>('/api/people')
+      .get<SwapiGet<Person>>('https://swapi.dev/api/people')
       // .pipe(delay(3000))
       .subscribe((response) => {
         this.personRequestSubject.next(response);

@@ -1,0 +1,16 @@
+FROM node:12.17.0 AS build
+WORKDIR /app
+COPY anuglar.json package.json tsconfig.json
+RUN npm install
+
+COPY src ./src
+RUN npm run build
+
+FROM node:12.17.0
+WORKDIR app/nginx
+COPY --from=build /app/dist/ ./content
+COPY nginx.conf ./conf/
+
+USER nginx
+EXPOSE 8080
+CMD ["nginx", "-g", "daemon off;"]
