@@ -2,6 +2,7 @@ import { Person } from '../person/models/person';
 import { SwapiGet } from '@shared/models/swapi';
 
 export const mockPerson: Person = {
+  id: 1,
   name: 'testName',
   height: 99,
   gender: 'testGender',

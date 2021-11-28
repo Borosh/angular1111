@@ -23,8 +23,16 @@ export class PersonService {
       .subscribe(this.totalNumberOfPersons);
 
     this.http
-      .get<SwapiGet<Person>>('https://swapi.dev/api/people')
-      // .pipe(delay(3000))
+      .get<SwapiGet<Person>>('/api/people')
+      .pipe(
+        map((response) => ({
+          ...response,
+          results: response.results.map((person, index) => ({
+            ...person,
+            id: index + 1,
+          })),
+        }))
+      )
       .subscribe((response) => {
         this.personRequestSubject.next(response);
         this.loadingSubject.next(false);

@@ -44,7 +44,6 @@ export class PersonTableComponent {
       label: 'View',
       action: (person: Person) => {
         this.personClicked.emit(person);
-        console.log({ person });
       },
     },
   ];

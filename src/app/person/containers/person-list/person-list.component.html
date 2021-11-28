@@ -17,6 +17,7 @@
         [loading]="loading$ | async"
         (nextPageClicked)="nextPage()"
         (previousPageClicked)="previousPage()"
+        (personClicked)="openPersonDetails($event)"
     ></app-person-table>
 </div>
 
