@@ -18,9 +18,9 @@ export class PersonService {
       .pipe(
         map((response) => ({
           ...response,
-          results: response.results.map((person, index) => ({
+          results: response.results.map((person) => ({
             ...person,
-            id: index + 1,
+            id: +person.url.split('/').slice(-2)[0],
           })),
         }))
       );

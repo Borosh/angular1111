@@ -2,7 +2,10 @@ import { Person } from '@person/models/person';
 
 export interface PersonState {
   entitiesByPage: {
-    [pageNumber: number]: Person[];
+    [pageNumber: number]: number[];
+  };
+  entitiesById: {
+    [id: number]: Person;
   };
   error: string;
   loaded: boolean;
@@ -13,6 +16,7 @@ export interface PersonState {
 
 export const initialPersonState: PersonState = {
   entitiesByPage: {},
+  entitiesById: {},
   error: null,
   loaded: false,
   loading: false,

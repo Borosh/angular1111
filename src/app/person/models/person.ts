@@ -4,4 +4,5 @@ export interface Person {
   height: number;
   mass: number;
   gender: string;
+  url?: string;
 }

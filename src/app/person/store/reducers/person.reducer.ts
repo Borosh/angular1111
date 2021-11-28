@@ -19,7 +19,17 @@ export const getPersonsReducer = createReducer(
     error: null,
     entitiesByPage: {
       ...state.entitiesByPage,
-      [state.currentPage]: action.persons,
+      [state.currentPage]: action.persons.map(({ id }) => id),
+    },
+    entitiesById: {
+      ...state.entitiesById,
+      ...action.persons.reduce(
+        (acc, person) => ({
+          ...acc,
+          [person.id]: person,
+        }),
+        {}
+      ),
     },
     loading: false,
     loaded: true,

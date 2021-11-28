@@ -9,8 +9,10 @@ export const selectPersonsState = (state: AppState) => state.personReducer;
 
 export const selectPersonsEntities = createSelector(
   selectPersonsState,
-  ({ entitiesByPage, currentPage }: PersonState) =>
-    entitiesByPage[currentPage] ?? []
+  ({ entitiesByPage, currentPage, entitiesById }: PersonState) =>
+    entitiesByPage[currentPage]
+      ? entitiesByPage[currentPage].map((id) => entitiesById[id])
+      : []
 );
 export const selectPersonsLoading = createSelector(
   selectPersonsState,
