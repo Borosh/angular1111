@@ -5,11 +5,15 @@ import {
   Input,
   Output,
 } from '@angular/core';
+import { InlineMenuItem } from '@shared/components/inline-menu';
 import { ColDef } from '@shared/components/table/table.component';
 import { tableColumns } from '@shared/decorators/table-columns.decorator';
 import { Person } from '../../models/person';
 
-@tableColumns('name', 'height', 'mass', 'gender')
+@tableColumns('name', 'height', 'mass', 'gender', {
+  key: 'actions',
+  type: 'actions',
+})
 @Component({
   selector: 'app-person-table',
   templateUrl: './person-table.component.html',
@@ -29,8 +33,21 @@ export class PersonTableComponent {
   nextPageClicked = new EventEmitter<void>();
   @Output()
   previousPageClicked = new EventEmitter<void>();
+  @Output()
+  personClicked = new EventEmitter<Person>();
 
   tableColumns: ColDef[];
+
+  actions: InlineMenuItem<Person>[] = [
+    {
+      icon: 'star',
+      label: 'View',
+      action: (person: Person) => {
+        this.personClicked.emit(person);
+        console.log({ person });
+      },
+    },
+  ];
 
   onPageChanged(page: number) {
     page > this.currentPage

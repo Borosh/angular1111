@@ -1,6 +1,6 @@
 <app-paginable-table
     [colDefs]="tableColumns"
-    [rows]="persons"
+    [rows]="persons | menuItems: actions"
     [currentPage]="currentPage"
     [totalNumberOfElements]="totalNumberOfPersons"
     [loading]="loading"

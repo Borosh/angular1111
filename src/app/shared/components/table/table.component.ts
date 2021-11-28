@@ -1,8 +1,11 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Person } from '@person/models/person';
+import { MenuItemAction } from '../inline-menu';
 
 export interface ColDef {
   header?: string;
   key: string;
+  type?: string;
 }
 
 @Component({
@@ -27,4 +30,8 @@ export class TableComponent {
     return this._colDefs;
   }
   displayedColumns: string[];
+
+  onActionClick(action: MenuItemAction<Person>, person: Person) {
+    action(person);
+  }
 }

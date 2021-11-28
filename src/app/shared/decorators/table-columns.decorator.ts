@@ -11,10 +11,12 @@ export function tableColumns(...columns: (string | ColDef)[]) {
             ? {
                 key: col,
                 header: startCase(col),
+                type: 'text',
               }
             : {
                 key: col.key,
                 header: col.header ?? startCase(col.key),
+                type: col.type ?? 'text',
               };
         return header;
       });
