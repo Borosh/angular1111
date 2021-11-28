@@ -14,6 +14,9 @@ import { MatTableModule } from '@angular/material/table';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PersonTableComponent } from './components/person-table/person-table.component';
 import { PersonDetailsComponent } from './containers/person-details/person-details.component';
+import { StoreModule } from '@ngrx/store';
+import { getPersonsReducer, PersonEffects } from './store';
+import { EffectsModule } from '@ngrx/effects';
 
 const IMPORTED_MATERIAL_MOUDLES = [
   MatButtonModule,
@@ -26,7 +29,12 @@ const IMPORTED_MATERIAL_MOUDLES = [
 ];
 
 @NgModule({
-  declarations: [PersonListComponent, AddPersonFormComponent, PersonTableComponent, PersonDetailsComponent],
+  declarations: [
+    PersonListComponent,
+    AddPersonFormComponent,
+    PersonTableComponent,
+    PersonDetailsComponent,
+  ],
   imports: [
     CommonModule,
     SharedModule,
@@ -34,6 +42,8 @@ const IMPORTED_MATERIAL_MOUDLES = [
     IMPORTED_MATERIAL_MOUDLES,
     ReactiveFormsModule,
     FormsModule,
+    StoreModule.forFeature('personReducer', getPersonsReducer),
+    EffectsModule.forFeature([PersonEffects]),
   ],
 })
 export class PersonModule {}

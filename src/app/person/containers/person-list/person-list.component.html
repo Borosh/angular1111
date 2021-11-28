@@ -1,5 +1,5 @@
 <div
-    *ngIf="firstLoaded; else loading"
+    *ngIf="firstLoaded$ | async; else loading"
     class="person-list-wrapper"
 >
 
@@ -12,7 +12,7 @@
 
     <app-person-table
         [persons]="persons$ | async"
-        [currentPage]="currentPage"
+        [currentPage]="currentPage$ | async"
         [totalNumberOfPersons]="totalNumberOfPersons$ | async"
         [loading]="loading$ | async"
         (nextPageClicked)="nextPage()"

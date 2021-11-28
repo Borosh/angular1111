@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { CanActivate } from '@angular/router';
-import { PersonService } from '../services/person.service';
+import { Store } from '@ngrx/store';
+import { getPersonsByPage } from '@person/store/actions';
 
 @Injectable({ providedIn: 'root' })
 export class PersonGuard implements CanActivate {
-  constructor(private personService: PersonService) {}
+  constructor(private store: Store<any>) {}
 
   canActivate(): boolean {
-    this.personService.fetchPersons();
+    this.store.dispatch(getPersonsByPage({ page: 1 }));
 
     return true;
   }
