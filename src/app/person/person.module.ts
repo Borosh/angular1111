@@ -42,7 +42,7 @@ const IMPORTED_MATERIAL_MOUDLES = [
     IMPORTED_MATERIAL_MOUDLES,
     ReactiveFormsModule,
     FormsModule,
-    StoreModule.forFeature('personReducer', getPersonsReducer),
+    StoreModule.forFeature('persons', getPersonsReducer),
     EffectsModule.forFeature([PersonEffects]),
   ],
 })

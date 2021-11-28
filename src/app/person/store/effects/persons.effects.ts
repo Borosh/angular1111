@@ -2,9 +2,12 @@ import { Injectable } from '@angular/core';
 import { createEffect, ofType, Actions } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { PersonService } from '@person/services/person.service';
-import { EMPTY, of } from 'rxjs';
+import { of } from 'rxjs';
 import { catchError, switchMap, first } from 'rxjs/operators';
 import {
+  getPersonById,
+  getPersonByIdFailed,
+  getPersonByIdSuccess,
   getPersonsByPage,
   getPersonsFailed,
   getPersonsNextPage,
@@ -14,6 +17,7 @@ import {
 } from '../actions/person.actions';
 import {
   selectCurrentPage,
+  selectPersonById,
   selectPersonsEntities,
 } from '../selectors/person.selector';
 
@@ -73,6 +77,25 @@ export class PersonEffects {
                     }),
                   ]),
                   catchError((error) => of(getPersonsFailed({ error })))
+                )
+          )
+        )
+      )
+    )
+  );
+  getPersonById$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(getPersonById),
+      switchMap(({ id }) =>
+        this.store.select(selectPersonById(id)).pipe(
+          first(),
+          switchMap((person) =>
+            person
+              ? [getPersonByIdSuccess({ person })]
+              : this.personService.getPersonsById(id).pipe(
+                  first(),
+                  switchMap((person) => [getPersonByIdSuccess({ person })]),
+                  catchError((error) => of(getPersonByIdFailed({ error })))
                 )
           )
         )

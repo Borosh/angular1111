@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Person } from '@person/models/person';
-import { mockPerson } from '@testing/mock-perons';
+import { selectPersonsLoading, selectSelectedPerson } from '@person/store';
 import { Observable, of } from 'rxjs';
 
 @Component({
@@ -10,10 +11,12 @@ import { Observable, of } from 'rxjs';
 })
 export class PersonDetailsComponent implements OnInit {
   person$: Observable<Person>;
+  personLoading$: Observable<boolean>;
 
-  constructor() {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {
-    this.person$ = of(mockPerson);
+    this.person$ = this.store.select(selectSelectedPerson);
+    this.personLoading$ = this.store.select(selectPersonsLoading);
   }
 }

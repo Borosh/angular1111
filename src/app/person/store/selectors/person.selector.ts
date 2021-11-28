@@ -1,11 +1,7 @@
-import { createSelector } from '@ngrx/store';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { PersonState } from '../models/person-state.model';
 
-export interface AppState {
-  personReducer: PersonState;
-}
-
-export const selectPersonsState = (state: AppState) => state.personReducer;
+export const selectPersonsState = createFeatureSelector<PersonState>('persons');
 
 export const selectPersonsEntities = createSelector(
   selectPersonsState,
@@ -14,6 +10,12 @@ export const selectPersonsEntities = createSelector(
       ? entitiesByPage[currentPage].map((id) => entitiesById[id])
       : []
 );
+
+export const selectPersonById = (id: number) =>
+  createSelector(
+    selectPersonsState,
+    (state: PersonState) => state.entitiesById[id]
+  );
 export const selectPersonsLoading = createSelector(
   selectPersonsState,
   (state: PersonState) => state.loading
@@ -33,4 +35,9 @@ export const selectTotalNumberOfPersons = createSelector(
 export const selectCurrentPage = createSelector(
   selectPersonsState,
   (state: PersonState) => state.currentPage
+);
+export const selectSelectedPerson = createSelector(
+  selectPersonsState,
+  ({ entitiesById, selectedPersonId }: PersonState) =>
+    entitiesById[selectedPersonId]
 );

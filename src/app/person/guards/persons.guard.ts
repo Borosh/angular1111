@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { getPersonsByPage } from '@person/store/actions';
 
 @Injectable({ providedIn: 'root' })
-export class PersonGuard implements CanActivate {
+export class PersonsGuard implements CanActivate {
   constructor(private store: Store<any>) {}
 
   canActivate(): boolean {

@@ -40,5 +40,23 @@ export const getPersonsReducer = createReducer(
       ...state,
       totalNumberOfPersons,
     })
-  )
+  ),
+  on(PersonActions.getPersonById, (state) => ({
+    ...state,
+    loading: true,
+  })),
+  on(PersonActions.getPersonByIdSuccess, (state, { person }) => ({
+    ...state,
+    loading: false,
+    loaded: true,
+    entitiesById: { ...state.entitiesById, [person.id]: person },
+  })),
+  on(PersonActions.getPersonByIdFailed, (state, { error }) => ({
+    ...state,
+    error,
+  })),
+  on(PersonActions.setSelectedPersonById, (state, { id }) => ({
+    ...state,
+    selectedPersonId: id,
+  }))
 );

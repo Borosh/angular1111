@@ -20,9 +20,20 @@ export class PersonService {
           ...response,
           results: response.results.map((person) => ({
             ...person,
-            id: +person.url.split('/').slice(-2)[0],
+            id: this.getPersonId(person.url),
           })),
         }))
       );
   }
+
+  getPersonsById(id: number) {
+    return this.http.get<Person>(`/api/people/${id}`, {}).pipe(
+      map((person) => ({
+        ...person,
+        id: this.getPersonId(person.url),
+      }))
+    );
+  }
+
+  private getPersonId = (url: string): number => +url.split('/').slice(-2)[0];
 }

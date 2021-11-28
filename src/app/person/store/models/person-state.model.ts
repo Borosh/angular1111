@@ -12,6 +12,7 @@ export interface PersonState {
   loading: boolean;
   totalNumberOfPersons: number;
   currentPage: number;
+  selectedPersonId: number;
 }
 
 export const initialPersonState: PersonState = {
@@ -22,4 +23,5 @@ export const initialPersonState: PersonState = {
   loading: false,
   totalNumberOfPersons: 0,
   currentPage: 1,
+  selectedPersonId: null,
 };
