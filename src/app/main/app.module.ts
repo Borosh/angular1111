@@ -14,6 +14,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
+import { HTTP_INTERCEPTOR_PROVIDERS } from './interceptors';
 
 @NgModule({
   declarations: [AppComponent, MainComponent],
@@ -33,7 +34,7 @@ import { environment } from 'src/environments/environment';
       logOnly: environment.production,
     }),
   ],
-  providers: [],
+  providers: [HTTP_INTERCEPTOR_PROVIDERS],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
