@@ -18,6 +18,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MenuItemsPipe } from './pipes/menu-items.pipe';
 import { InlineMenuComponent } from './components/inline-menu';
+import { SelectComponent } from './components/select/select.component';
 
 const COMPONENTS = [
   PaginableTableComponent,
@@ -25,6 +26,7 @@ const COMPONENTS = [
   ButtonComponent,
   LoadingIndicatorComponent,
   FormDialogComponent,
+  SelectComponent,
 ];
 
 const IMPORTED_MATERIAL_MOUDLES = [

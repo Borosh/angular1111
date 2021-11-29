@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { FormComponentForFormDialogBaseClass } from '@shared/components/dialog/form-component-for-form-dialog-base';
-
-interface SelectOption {
-  value: string;
-  viewValue: string;
-}
+import { SelectOption } from '@shared/components/select/select.component';
 
 @Component({
   selector: 'app-add-person-form',
