@@ -16,4 +16,5 @@
             {{option.viewValue}}
         </mat-option>
     </mat-select>
+    <mat-error *ngIf="errorMessage">{{errorMessage}}</mat-error>
 </mat-form-field>

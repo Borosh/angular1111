@@ -24,6 +24,8 @@ export class CustomFormElementBase<T> implements ControlValueAccessor {
 
   @Input()
   valid = true;
+  @Input()
+  errorMessage: string;
 
   matcher: any;
 
@@ -38,6 +40,9 @@ export class CustomFormElementBase<T> implements ControlValueAccessor {
         console.log({ requ: this.required, dis: this.disabled });
         ngControl.statusChanges.subscribe((_) => {
           console.log(this.ngControl.errors);
+          this.errorMessage = this.ngControl.errors
+            ? Object.values(this.ngControl.errors)[0]
+            : '';
           this.disabled = this.ngControl.disabled;
           this.required = this.ngControl.control.hasValidator(
             Validators.required
