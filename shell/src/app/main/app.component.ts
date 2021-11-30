@@ -9,7 +9,9 @@ import { Router } from '@angular/router';
 export class AppComponent {
   isSidenavOpened: boolean;
 
-  constructor(private router: Router) {}
+    window.addEventListener('fromPersonList', () => {
+      console.log('GOTCHA');
+    });
 
   navigateTo(path: string) {
     this.router.navigateByUrl(path);

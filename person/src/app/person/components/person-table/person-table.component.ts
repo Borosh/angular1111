@@ -49,6 +49,7 @@ export class PersonTableComponent {
   ];
 
   onPageChanged(page: number) {
+    window.dispatchEvent(new Event('fromPersonList'));
     page > this.currentPage
       ? this.nextPageClicked.emit()
       : this.previousPageClicked.emit();
