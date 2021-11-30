@@ -10,7 +10,7 @@ export class PersonService {
 
   getPersons(page: number = 1) {
     return this.http
-      .get<SwapiGet<Person>>(`https://swapi.dev/api/people`, {
+      .get<SwapiGet<Person>>(`/api/people`, {
         params: {
           page,
         },
@@ -27,7 +27,7 @@ export class PersonService {
   }
 
   getPersonsById(id: number) {
-    return this.http.get<Person>(`https://swapi.dev/api/people/${id}`, {}).pipe(
+    return this.http.get<Person>(`/api/people/${id}`, {}).pipe(
       map((person) => ({
         ...person,
         id: this.getPersonId(person.url),

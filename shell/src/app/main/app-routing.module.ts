@@ -8,9 +8,14 @@ const routes: Routes = [
     component: MainComponent,
   },
   {
+    /* path: 'persons',
+    loadChildren: () =>
+      import('../person/person.module').then((m) => m.PersonModule), */
     path: 'persons',
     loadChildren: () =>
-      import('../person/person.module').then((m) => m.PersonModule),
+      import('person/PersonModule')
+        .then((m) => m.PersonModule)
+        .catch((e) => console.log({ e })),
   },
   {
     path: '',
