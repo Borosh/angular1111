@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -15,6 +15,11 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { HTTP_INTERCEPTOR_PROVIDERS } from './interceptors';
+
+export function getMfUrl() {
+  environment.mfUrl = 'http://localhost:4300';
+  return () => true;
+}
 
 @NgModule({
   declarations: [AppComponent, MainComponent],
@@ -34,7 +39,14 @@ import { HTTP_INTERCEPTOR_PROVIDERS } from './interceptors';
       logOnly: environment.production,
     }),
   ],
-  providers: [HTTP_INTERCEPTOR_PROVIDERS],
+  providers: [
+    HTTP_INTERCEPTOR_PROVIDERS,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: getMfUrl,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

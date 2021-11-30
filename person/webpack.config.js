@@ -26,8 +26,9 @@ module.exports = {
       name: "person",
       filename: "remoteEntry.js",
       exposes: {
-        './PersonModule': ".//src/app/person/person.module.ts",
-        './ButtonComponent': ".//src/app/shared/components/button/button.component.ts",
+        "./PersonModule": ".//src/app/person/person.module.ts",
+        "./ButtonComponent":
+          ".//src/app/shared/components/button/button.component.ts",
       },
 
       shared: share({
@@ -35,37 +36,31 @@ module.exports = {
           singleton: true,
           strictVersion: true,
           requiredVersion: "auto",
-          eager: true,
         },
         "@angular/common": {
           singleton: true,
           strictVersion: true,
           requiredVersion: "auto",
-          eager: true,
         },
         "@angular/common/http": {
           singleton: true,
           strictVersion: true,
           requiredVersion: "auto",
-          eager: true,
         },
         "@angular/router": {
           singleton: true,
           strictVersion: true,
           requiredVersion: "auto",
-          eager: true,
         },
         "@ngrx/store": {
           singleton: true,
           strictVersion: true,
           requiredVersion: "auto",
-          eager: true,
         },
         "@ngrx/effects": {
           singleton: true,
           strictVersion: true,
           requiredVersion: "auto",
-          eager: true,
         },
 
         ...sharedMappings.getDescriptors(true),
