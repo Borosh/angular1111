@@ -1,0 +1,15 @@
+app-loading-indicator {
+  position: absolute;
+  top: 100px;
+  left: 50%;
+}
+
+.person-list-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.add-person-button {
+  align-self: end;
+}

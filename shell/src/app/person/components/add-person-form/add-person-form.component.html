@@ -1,0 +1,33 @@
+<form [formGroup]="form">
+    <p>Person data</p>
+    <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input
+            matInput
+            formControlName="name"
+        >
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Height</mat-label>
+        <input
+            type="number"
+            matInput
+            formControlName="height"
+        >
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Mass</mat-label>
+        <input
+            type="number"
+            matInput
+            formControlName="mass"
+        >
+    </mat-form-field>
+
+    <app-select
+        formControlName="gender"
+        [options]="genders"
+        label="Gender"
+    ></app-select>
+
+</form>

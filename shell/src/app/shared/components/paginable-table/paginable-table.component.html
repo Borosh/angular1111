@@ -1,0 +1,12 @@
+<app-table
+    [colDefs]="colDefs"
+    [rows]="rows"
+></app-table>
+
+<mat-paginator
+    #paginator
+    [length]="totalNumberOfElements"
+    [pageSize]="10"
+    (page)="onPageChange($event)"
+>
+</mat-paginator>

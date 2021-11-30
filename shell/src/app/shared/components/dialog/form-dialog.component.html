@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>New person</h1>
+<div mat-dialog-content>
+    <ng-container #fromContainer></ng-container>
+</div>
+<div mat-dialog-actions>
+    <button
+        mat-button
+        (click)="cancelClicked()"
+    >
+        Cancel
+    </button>
+    <button
+        mat-button
+        cdkFocusInitial
+        (click)="saveClicked()"
+    >
+        Save
+    </button>
+</div>
