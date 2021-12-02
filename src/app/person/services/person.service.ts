@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import { distinctUntilKeyChanged, first, map, switchMap } from 'rxjs/operators';
-import { SwapiGet } from 'src/app/shared/models/swapi';
+import { SwapiGet } from '@shared/models/swapi';
 import { Person } from '../models/person';
 
 @Injectable({ providedIn: 'root' })

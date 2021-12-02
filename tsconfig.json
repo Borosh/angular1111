@@ -17,7 +17,12 @@
     "target": "es2017",
     "module": "es2020",
     "lib": ["es2018", "dom"],
-    "strictNullChecks": false
+    "strictNullChecks": false,
+    "paths": {
+      "@shared/*": ["src/app/shared/*"],
+      "@person/*": ["src/app/person/*"],
+      "@testing/*": ["src/app/testing/*"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

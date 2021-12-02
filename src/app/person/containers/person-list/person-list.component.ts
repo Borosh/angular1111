@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
-import { Person } from 'src/app/person/models/person';
-import { PersonService } from 'src/app/person/services/person.service';
+import { Person } from '@person/models/person';
+import { PersonService } from '@person/services/person.service';
 import { MatDialog } from '@angular/material/dialog';
-import { FormDialogComponent } from 'src/app/shared/components/form-dialog';
+import { FormDialogComponent } from '@shared/components/form-dialog';
 import { AddPersonFormComponent } from '../../components/add-person-form/add-person-form.component';
 
 @Component({
