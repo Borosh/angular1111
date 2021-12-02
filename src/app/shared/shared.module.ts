@@ -7,7 +7,7 @@ import { TableComponent } from './components/table/table.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { DialogComponent } from './components/dialog/dialog.component';
+import { FormDialogComponent } from './components/form-dialog';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -19,7 +19,7 @@ const COMPONENTS = [
   TableComponent,
   ButtonComponent,
   LoadingIndicatorComponent,
-  DialogComponent,
+  FormDialogComponent,
 ];
 
 const IMPORTED_MATERIAL_MOUDLES = [
