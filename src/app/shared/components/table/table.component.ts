@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 export interface ColDef {
-  header: string;
+  header?: string;
   key: string;
 }
 
