@@ -16,6 +16,7 @@
         [loading]="loading$ | async"
         (nextPage)="nextPage()"
         (previousPage)="previousPage()"
+        (personSelected)="openPersonPage($event)"
     >
     </app-person-table>
 

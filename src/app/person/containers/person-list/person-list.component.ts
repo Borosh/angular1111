@@ -6,6 +6,7 @@ import { PersonService } from '@person/services/person.service';
 import { MatDialog } from '@angular/material/dialog';
 import { FormDialogComponent } from '@shared/components/form-dialog';
 import { AddPersonFormComponent } from '../../components/add-person-form/add-person-form.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-person-list',
@@ -20,7 +21,12 @@ export class PersonListComponent implements OnInit {
   firstLoaded = false;
   currentPage = 1;
 
-  constructor(private personService: PersonService, public dialog: MatDialog) {
+  constructor(
+    private personService: PersonService,
+    public dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
     this.currentPage = 2;
   }
 
@@ -57,5 +63,9 @@ export class PersonListComponent implements OnInit {
       console.log('The dialog was closed');
       console.log(result);
     });
+  }
+
+  openPersonPage(person: Person) {
+    this.router.navigate([person.id], { relativeTo: this.route });
   }
 }

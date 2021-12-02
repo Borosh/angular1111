@@ -3,4 +3,5 @@ export interface Person {
   height: number;
   mass: number;
   gender: string;
+  id: number;
 }

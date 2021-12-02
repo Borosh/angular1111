@@ -9,6 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { PersonTableComponent } from './components/person-table/person-table.component';
+import { PersonDetailsComponent } from './containers/person-details/person-details.component';
 
 const IMPORTED_MATERIAL_MOUDLES = [
   MatFormFieldModule,
@@ -17,7 +18,7 @@ const IMPORTED_MATERIAL_MOUDLES = [
 ];
 
 @NgModule({
-  declarations: [PersonListComponent, AddPersonFormComponent, PersonTableComponent],
+  declarations: [PersonListComponent, AddPersonFormComponent, PersonTableComponent, PersonDetailsComponent],
   imports: [
     CommonModule,
     SharedModule,

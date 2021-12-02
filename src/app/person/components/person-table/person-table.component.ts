@@ -52,4 +52,5 @@ export class PersonTableComponent {
   onPageChanged(page: number) {
     page > this.currentPage ? this.nextPage.emit() : this.previousPage.emit();
   }
+  
 }
