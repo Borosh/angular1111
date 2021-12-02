@@ -9,14 +9,15 @@
     >
         Add person
     </app-button>
-    <app-paginable-table
-        [colDefs]="tableColumns"
-        [rows]="persons$ | async"
+    <app-person-table
+        [persons]="persons$ | async"
         [currentPage]="currentPage"
-        [totalNumberOfElements]="totalNumberOfPersons$ | async"
+        [totalNumberOfPersons]="totalNumberOfPersons$ | async"
         [loading]="loading$ | async"
-        (pageChange)="onPageChanged($event)"
-    ></app-paginable-table>
+        (nextPage)="nextPage()"
+        (previousPage)="previousPage()"
+    >
+    </app-person-table>
 
 </div>
 

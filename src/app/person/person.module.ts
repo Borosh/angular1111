@@ -8,6 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
+import { PersonTableComponent } from './components/person-table/person-table.component';
 
 const IMPORTED_MATERIAL_MOUDLES = [
   MatFormFieldModule,
@@ -16,7 +17,7 @@ const IMPORTED_MATERIAL_MOUDLES = [
 ];
 
 @NgModule({
-  declarations: [PersonListComponent, AddPersonFormComponent],
+  declarations: [PersonListComponent, AddPersonFormComponent, PersonTableComponent],
   imports: [
     CommonModule,
     SharedModule,
