@@ -13,6 +13,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
+import { InlineMenuComponent } from './components/inline-menu/inline-menu.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MenuItemsPipe } from './pipes/menu-items.pipe';
 
 const COMPONENTS = [
   PaginableTableComponent,
@@ -20,6 +24,7 @@ const COMPONENTS = [
   ButtonComponent,
   LoadingIndicatorComponent,
   FormDialogComponent,
+  InlineMenuComponent,
 ];
 
 const IMPORTED_MATERIAL_MOUDLES = [
@@ -30,7 +35,11 @@ const IMPORTED_MATERIAL_MOUDLES = [
   MatFormFieldModule,
   MatInputModule,
   MatSelectModule,
+  MatMenuModule,
+  MatIconModule,
 ];
+
+const PIPES = [MenuItemsPipe];
 
 @NgModule({
   imports: [
@@ -39,7 +48,7 @@ const IMPORTED_MATERIAL_MOUDLES = [
     FormsModule,
     ReactiveFormsModule,
   ],
-  declarations: [COMPONENTS],
-  exports: [COMPONENTS],
+  declarations: [COMPONENTS, PIPES],
+  exports: [COMPONENTS, PIPES],
 })
 export class SharedModule {}
