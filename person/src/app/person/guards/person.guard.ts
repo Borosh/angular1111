@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { getPersonsByPage } from '@person/store/actions/person.actions';
+import { getPersonsByPage } from '@shared/store/person-store/actions/person.actions';
 import { PersonService } from '../services/person.service';
 
 @Injectable({ providedIn: 'root' })

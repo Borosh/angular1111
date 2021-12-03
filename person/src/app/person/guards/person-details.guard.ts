@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { getPersonById } from '@person/store/actions/person.actions';
+import { getPersonById } from '@shared/store/person-store/actions/person.actions';
 
 @Injectable({ providedIn: 'root' })
 export class PersonDetailsGuard implements CanActivate {

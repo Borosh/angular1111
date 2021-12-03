@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Person } from '@person/models/person';
-import { selectSelectPerson } from '@person/store/selectors/person.selector';
+import { selectSelectPerson } from '@shared/store/person-store/selectors/person.selector';
 import { Observable } from 'rxjs';
 
 @Component({

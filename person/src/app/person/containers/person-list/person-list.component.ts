@@ -8,11 +8,11 @@ import { FormDialogComponent } from '@shared/components/form-dialog';
 import { AddPersonFormComponent } from '../../components/add-person-form/add-person-form.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import * as personSelectors from '@person/store/selectors/person.selector';
+import * as personSelectors from '@shared/store/person-store/selectors/person.selector';
 import {
   getPersonNextPage,
   getPersonPreviousPage,
-} from '@person/store/actions/person.actions';
+} from '@shared/store/person-store';
 
 @Component({
   selector: 'app-person-list',
