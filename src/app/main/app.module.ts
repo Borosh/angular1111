@@ -14,8 +14,6 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { environment } from 'src/environments/environment';
-import { getPersonsReducer } from '@person/store/reducers/person.reducer';
-import { PersonEffects } from '@person/store/effects/person.effects';
 
 @NgModule({
   declarations: [AppComponent, MainComponent],
@@ -28,12 +26,12 @@ import { PersonEffects } from '@person/store/effects/person.effects';
     MatSidenavModule,
     MatIconModule,
     MatButtonModule,
-    StoreModule.forRoot({ persons: getPersonsReducer }, {}),
+    StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
     }),
-    EffectsModule.forRoot([PersonEffects]),
+    EffectsModule.forRoot([]),
   ],
   providers: [],
   bootstrap: [AppComponent],

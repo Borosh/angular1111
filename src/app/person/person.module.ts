@@ -10,6 +10,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { PersonTableComponent } from './components/person-table/person-table.component';
 import { PersonDetailsComponent } from './containers/person-details/person-details.component';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { PersonEffects } from './store/effects/person.effects';
+import { getPersonsReducer } from './store/reducers/person.reducer';
 
 const IMPORTED_MATERIAL_MOUDLES = [
   MatFormFieldModule,
@@ -18,13 +22,20 @@ const IMPORTED_MATERIAL_MOUDLES = [
 ];
 
 @NgModule({
-  declarations: [PersonListComponent, AddPersonFormComponent, PersonTableComponent, PersonDetailsComponent],
+  declarations: [
+    PersonListComponent,
+    AddPersonFormComponent,
+    PersonTableComponent,
+    PersonDetailsComponent,
+  ],
   imports: [
     CommonModule,
     SharedModule,
     PersonRoutingModule,
     ReactiveFormsModule,
     IMPORTED_MATERIAL_MOUDLES,
+    StoreModule.forFeature('persons', getPersonsReducer),
+    EffectsModule.forFeature([PersonEffects]),
   ],
 })
 export class PersonModule {}
