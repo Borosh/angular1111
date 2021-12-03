@@ -13,43 +13,31 @@ export class PersonService {
 
   constructor(private http: HttpClient) {}
 
-  fetchPersons(): void {
-    this.loadingSubject.next(true);
-    this.personRequestSubject
-      .pipe(
-        distinctUntilKeyChanged('count'),
-        map(({ count }) => count)
-      )
-      .subscribe(this.totalNumberOfPersons);
-
-    this.http
-      .get<SwapiGet<Person>>('/api/people')
+  getPersons(page: number = 1): Observable<SwapiGet<Person>> {
+    return this.http
+      .get<SwapiGet<Person>>('/api/people', {
+        params: {
+          page,
+        },
+      })
       .pipe(
         map((response) => ({
           ...response,
-          results: response.results.map((result, index) => ({
+          results: response.results.map((result) => ({
             ...result,
-            id: index + 1,
+            id: this.getPersonId(result.url),
           })),
         }))
-      )
-      .subscribe((response) => {
-        this.personRequestSubject.next(response);
-        this.loadingSubject.next(false);
-      });
+      );
   }
 
-  get totalNumberOfPersons$(): Observable<number> {
-    return this.totalNumberOfPersons.asObservable();
+  getPersonById(id: number) {
+    return this.http
+      .get<Person>(`/api/people/${id}`)
+      .pipe(map((person) => ({ ...person, id: +id })));
   }
 
-  get persons$(): Observable<Person[]> {
-    return this.personRequestSubject.pipe(map((response) => response.results));
-  }
-
-  get loading$(): Observable<boolean> {
-    return this.loadingSubject.asObservable();
-  }
+  private getPersonId = (url: string): number => +url.split('/').slice(-2)[0];
 
   getNextPage() {
     this.getRequestByPreviousRequstKey('next');

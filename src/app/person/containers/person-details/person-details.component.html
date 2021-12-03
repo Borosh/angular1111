@@ -1,1 +1,3 @@
 <p>person-details works!</p>
+
+<div *ngIf="person$ | async as person">{{person | json}}</div>

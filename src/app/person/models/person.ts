@@ -4,4 +4,5 @@ export interface Person {
   mass: number;
   gender: string;
   id: number;
+  url: string;
 }

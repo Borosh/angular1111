@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PersonDetailsComponent } from './containers/person-details/person-details.component';
 import { PersonListComponent } from './containers/person-list/person-list.component';
+import { PersonDetailsGuard } from './guards/person-details.guard';
 import { PersonGuard } from './guards/person.guard';
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
   {
     path: ':id',
     component: PersonDetailsComponent,
+    canActivate: [PersonDetailsGuard],
   },
 ];
 

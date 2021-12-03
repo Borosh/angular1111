@@ -1,12 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { combineLatest, Observable } from 'rxjs';
+import { filter, mapTo } from 'rxjs/operators';
 import { Person } from '@person/models/person';
 import { PersonService } from '@person/services/person.service';
 import { MatDialog } from '@angular/material/dialog';
 import { FormDialogComponent } from '@shared/components/form-dialog';
 import { AddPersonFormComponent } from '../../components/add-person-form/add-person-form.component';
 import { ActivatedRoute, Router } from '@angular/router';
+import { select, Store } from '@ngrx/store';
+import * as personSelectors from '@person/store/selectors/person.selector';
+import {
+  getPersonNextPage,
+  getPersonPreviousPage,
+} from '@person/store/actions/person.actions';
 
 @Component({
   selector: 'app-person-list',
@@ -17,37 +23,42 @@ export class PersonListComponent implements OnInit {
   persons$: Observable<Person[]>;
   totalNumberOfPersons$: Observable<number>;
   loading$: Observable<boolean>;
-
-  firstLoaded = false;
-  currentPage = 1;
+  firstLoaded$: Observable<boolean>;
+  currentPage$: Observable<number>;
 
   constructor(
     private personService: PersonService,
     public dialog: MatDialog,
     private router: Router,
-    private route: ActivatedRoute
-  ) {
-    this.currentPage = 2;
-  }
+    private route: ActivatedRoute,
+    private store: Store<any>
+  ) {}
 
   ngOnInit() {
-    this.persons$ = this.personService.persons$;
-    this.totalNumberOfPersons$ = this.personService.totalNumberOfPersons$;
-    this.loading$ = this.personService.loading$;
+    this.persons$ = this.store
+      .select(personSelectors.selectPersons)
+      .pipe(filter((persons) => !!persons.length));
+    this.totalNumberOfPersons$ = this.store.select(
+      personSelectors.selectTotalNumberOfPersons
+    );
+    this.loading$ = this.store.pipe(select(personSelectors.selectLoading));
+    this.currentPage$ = this.store.select(personSelectors.selectCurrentPage);
 
-    this.personService.loading$
-      .pipe(filter((loading) => !loading))
-      .subscribe((_) => (this.firstLoaded = true));
+    this.firstLoaded$ = combineLatest([
+      this.loading$,
+      this.store.select(personSelectors.selectLoaded),
+    ]).pipe(
+      filter(([loading, loaded]) => !loading && loaded),
+      mapTo(true)
+    );
   }
 
   nextPage() {
-    this.personService.getNextPage();
-    this.currentPage++;
+    this.store.dispatch(getPersonNextPage());
   }
 
   previousPage() {
-    this.personService.getPreviousPage();
-    this.currentPage--;
+    this.store.dispatch(getPersonPreviousPage());
   }
 
   openDialog() {
