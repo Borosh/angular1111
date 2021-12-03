@@ -1,0 +1,27 @@
+<div
+    *ngIf="firstLoaded$ | async; else loading"
+    class="person-list-wrapper"
+>
+
+    <app-button
+        class="add-person-button"
+        (onClick)="openDialog()"
+    >
+        Add person
+    </app-button>
+    <app-person-table
+        [persons]="persons$ | async"
+        [currentPage]="currentPage$ | async"
+        [totalNumberOfPersons]="totalNumberOfPersons$ | async"
+        [loading]="loading$ | async"
+        (nextPage)="nextPage()"
+        (previousPage)="previousPage()"
+        (personSelected)="openPersonPage($event)"
+    >
+    </app-person-table>
+
+</div>
+
+<ng-template #loading>
+    <app-loading-indicator></app-loading-indicator>
+</ng-template>

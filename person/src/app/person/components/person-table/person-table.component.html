@@ -1,0 +1,8 @@
+<app-paginable-table
+    [colDefs]="tableColumns"
+    [rows]="persons | menuItems:actions"
+    [currentPage]="currentPage"
+    [totalNumberOfElements]="totalNumberOfPersons"
+    [loading]="loading"
+    (pageChange)="onPageChanged($event)"
+></app-paginable-table>
