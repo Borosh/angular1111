@@ -28,6 +28,7 @@ module.exports = {
       filename: "remoteEntry.js",
       exposes: {
         "./PersonModule": ".//src/app/person/person.module.ts",
+        "./ButtonComponent": ".//src/app/shared/components/button/button.component.ts"
       },
 
       shared: share({
