@@ -9,8 +9,12 @@ const routes: Routes = [
   },
   {
     path: 'persons',
+    /* loadChildren: () =>
+      import('../person/person.module').then((m) => m.PersonModule), */
     loadChildren: () =>
-      import('../person/person.module').then((m) => m.PersonModule),
+      import('person/PersonModule')
+        .then((m) => m.PersonModule)
+        .catch((err) => console.log({ err })),
   },
   {
     path: '',
