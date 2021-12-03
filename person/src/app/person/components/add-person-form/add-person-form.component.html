@@ -23,15 +23,17 @@
             formControlName="mass"
         >
     </mat-form-field>
-    <mat-form-field appearance="fill">
-        <mat-label>Gender</mat-label>
-        <mat-select formControlName="gender">
-            <mat-option
-                *ngFor="let gender of genders"
-                [value]="gender.value"
-            >
-                {{gender.viewValue}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
+    <app-select
+        formControlName="gender"
+        label="Gender"
+        [options]="genders"
+    ></app-select>
+
 </form>
+
+<app-select
+    label="Gender"
+    [options]="genders"
+    [value]="genders[0].value"
+    (change)="newValue($event)"
+></app-select>
