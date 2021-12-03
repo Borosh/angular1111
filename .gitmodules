@@ -1,3 +1,6 @@
 [submodule "shell/src/app/shared"]
 	path = shell/src/app/shared
 	url = git@github.com:Borosh/angular1111sub.git
+[submodule "person/src/app/shared"]
+	path = person/src/app/shared
+	url = git@github.com:Borosh/angular1111sub.git
