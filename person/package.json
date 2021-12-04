@@ -26,6 +26,7 @@
     "@ngrx/store": "^13.0.1",
     "@ngrx/store-devtools": "^13.0.1",
     "@types/lodash": "^4.14.177",
+    "jasmine-marbles": "^0.8.4",
     "lodash": "^4.17.21",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
